@@ -3,15 +3,15 @@ import pandas as pd
 
 def main():
     
-    print 'Welcome to AMSASpy. Your at home AMSAS!'
-    print '\n'
-    print 'Use as you would use AMSAS but enter q to exit the program!'
-    print '\n'
+    print ('Welcome to AMSASpy. Your at home AMSAS!')
+    print ('\n')
+    print ('Use as you would use AMSAS but enter q to exit the program!')
+    print ('\n')
     
     while True:
         site = raw_input('>> ').upper()
         
-        print '\n'
+        print ('\n')
         if site == 'Q':
             break
             
@@ -19,7 +19,7 @@ def main():
             address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
         
         except:
-            print 'Site does not exist in NCAR database. Try another site.'
+            print ('Site does not exist in NCAR database. Try another site.')
             
             
         metar_raw = pd.read_html(address)[0]
@@ -28,8 +28,9 @@ def main():
         
         
         for i in reversed(metar):
-            print site + i
+            print (site + i)
         
-        print '\n'
+        print ('\n')
  
-main()
+if __name__ == '__main__':
+    main()
