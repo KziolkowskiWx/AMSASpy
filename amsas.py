@@ -9,7 +9,7 @@ def main():
     print ('\n')
     
     while True:
-        site = raw_input('>> ').upper()
+        site = input('>> ').upper()
         
         print ('\n')
         if site == 'Q':
