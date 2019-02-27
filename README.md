@@ -1,8 +1,8 @@
 # AMSASpy
-A scratched together program to run like AMSAS at home! 
+A scratched together program to run like AMSAS at home! This program is designed for Python 3.XX. 
 
 
-This is designed to be ran in a terminal window. It will retrieve and display metars when passed an identifer. Eg.
+This is designed to be ran in a terminal window. It will retrieve and display METARS when passed an identifer. Eg.
 
 
 >> cywg
@@ -26,3 +26,5 @@ CYWG 201600Z 07007KT 15SM OVC220 09/05 A3012 RMK CI8 SLP211
 
 
 Currently the program will only retireve the past 12 hours but options will be added to retrieve other ranges of obs. 
+
+Updated the file now to check if the user passed an identifier that exists. If not it will through back a warning and the user can continue to enter obs. It can also now take just a three letter identifer. Eg. The user can enter >> ywg and the leading C is not required. Additionally it will check if the site is a Canadian or an American site. So even if the site is an American site you will not require to add the leading K. Eg. >> gfk will return the observations for Grand Forks, ND (KGFK). 
