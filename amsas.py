@@ -2,35 +2,103 @@ import pandas as pd
 
 
 def main():
-    
+
     print ('Welcome to AMSASpy. Your at home AMSAS!')
     print ('\n')
     print ('Use as you would use AMSAS but enter q to exit the program!')
     print ('\n')
-    
+
     while True:
+
         site = input('>> ').upper()
-        
+
         print ('\n')
         if site == 'Q':
             break
-            
-        try:
-            address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
-        
-        except:
+
+
+        if len(site) == 3:
+            canadian = 'C' + site
+            american = 'K' + site
+
+            #check the site
+            xc = check(canadian)
+            xk = check(american)
+
+            if xc == True:
+                address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+canadian+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
+                site = canadian
+            elif xk == True:
+                address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+american+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
+                site = american
+            else:
+                address = False
+
+
+        else:
+            canadian = check(site)
+            american = check(site)
+
+            if canadian == True:
+                address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
+
+            elif american == True:
+                address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
+
+            else:
+                address = False
+
+
+
+
+#        address, site = getCanadian_site(site)
+        if address == False:
             print ('Site does not exist in NCAR database. Try another site.')
-            
-            
-        metar_raw = pd.read_html(address)[0]
-        metar = metar_raw[0][1].split(site)
-        del metar[0]
-        
-        
-        for i in reversed(metar):
-            print (site + i)
-        
+
+        else:
+            metar_raw = pd.read_html(address)[0]
+            metar = metar_raw[0][1].split(site)
+            del metar[0]
+            for i in reversed(metar):
+                print (site + i)
+
         print ('\n')
- 
-if __name__ == '__main__':
-    main()
+
+#---------------------------FUNCTIONS------------------------------------------
+
+def getCanadian_site(site):
+    """
+    This function will try to obtain a Canadian site.
+    """
+    if site[0] != 'C':
+        canadian = 'C'
+        site = canadian + site
+
+    address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
+    #check to see if the site exists
+    metar_raw = pd.read_html(address)[0]
+    if len(metar_raw) == 1:
+        address = False
+
+    return address, site
+
+def check(site):
+    """
+    Check to see if the site exists.
+    """
+    address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
+
+    metar_raw = pd.read_html(address)[0]
+    if len(metar_raw) == 1:
+        checker = False
+    else:
+        checker = True
+
+    return checker
+
+
+
+
+
+
+main()
