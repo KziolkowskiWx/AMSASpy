@@ -66,21 +66,6 @@ def main():
 
 #---------------------------FUNCTIONS------------------------------------------
 
-def getCanadian_site(site):
-    """
-    This function will try to obtain a Canadian site.
-    """
-    if site[0] != 'C':
-        canadian = 'C'
-        site = canadian + site
-
-    address = 'http://weather.rap.ucar.edu/surface/index.php?metarIds='+site+'&hoursStr=past+12+hours&std_trans=standard&num_metars=number&submit_metars=Retrieve'
-    #check to see if the site exists
-    metar_raw = pd.read_html(address)[0]
-    if len(metar_raw) == 1:
-        address = False
-
-    return address, site
 
 def check(site):
     """
