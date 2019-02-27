@@ -3,8 +3,7 @@ A scratched together program to run like AMSAS at home!
 
 Requirements:
 
-Python 3.6 or higher
-Pandas 
+Python 3.6 or higher and Pandas 
 
 
 Data is grabbed from http://weather.rap.ucar.edu/surface/. The program is designed to be ran in a terminal window. It will retrieve and display METARS when passed an identifer. Eg,
