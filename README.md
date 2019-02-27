@@ -1,8 +1,13 @@
 # AMSASpy
-A scratched together program to run like AMSAS at home! This program is designed for Python 3.XX. 
+A scratched together program to run like AMSAS at home! 
+
+Requirements:
+
+Python 3.6 or higher
+Pandas 
 
 
-This is designed to be ran in a terminal window. It will retrieve and display METARS when passed an identifer. Eg.
+Data is grabbed from http://weather.rap.ucar.edu/surface/. The program is designed to be ran in a terminal window. It will retrieve and display METARS when passed an identifer. Eg,
 
 
 >> cywg
@@ -23,8 +28,16 @@ CYWG 201600Z 07007KT 15SM OVC220 09/05 A3012 RMK CI8 SLP211
 
 >>
 
+Installation
 
+Clone/download the program into your home directory, then change into that directory via your terminal window.
 
-Currently the program will only retireve the past 12 hours but options will be added to retrieve other ranges of obs. 
+cd AMSAS/
 
-Updated the file now to check if the user passed an identifier that exists. If not it will through back a warning and the user can continue to enter obs. It can also now take just a three letter identifer. Eg. The user can enter >> ywg and the leading C is not required. Additionally it will check if the site is a Canadian or an American site. So even if the site is an American site you will not require to add the leading K. Eg. >> gfk will return the observations for Grand Forks, ND (KGFK). 
+To run the program type in your terminal window:
+
+python amsas.py
+
+And you are off and running!
+
+Currently the program will only retireve the past 12 hours but options will be added to retrieve other ranges of obs. Updates to the program will now to check if the user passed an identifier that exists. If not it will through back a warning and the user can continue to enter obs. It can also now take just a three letter identifer. Eg. The user can enter >> ywg and the leading C is not required. Additionally it will check if the site is a Canadian or an American site. So even if the site is an American site you will not require to add the leading K. Eg. >> gfk will return the observations for Grand Forks, ND (KGFK). 
